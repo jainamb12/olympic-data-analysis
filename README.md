@@ -1,10 +1,14 @@
 # OLYMPICS DATA ANALYSIS
-## About
-Hey there! Welcome to the olumpics analysis. I develop this project as my **3rd semester python project**. This is my **first python project**. I'm excited to share it with you. This project is about data analysis and visulisation that uses a **pandas, plotly, seaborn and matplotlib** libraries as fundamental technology. This project include different types of analysis which can be used interactively from **streamlit web app**. For analysis i considered **summer season only** this has total 120 years of data(1896-2016).
 
-What it includes?
+![Project flow chart](screenshots/olympics-ui.png)
 
-1) **Medal Tally**
+Welcome to the **Olympics Data Analysis project!** This is my **first Python project**, developed during my **third semester**, focusing on comprehensive data analysis and visualization of historical Olympic data. The project leverages powerful Python libraries such as **Pandas** for data manipulation and **Plotly, Seaborn, and Matplotlib** for creating insightful and interactive visualizations.
+
+The core of this project is a **Streamlit web application** that allows users to interactively explore various analyses. For this project, we primarily focus on **Summer Olympics data**, encompassing 120 years of history from 1896 to 2016.
+
+What's included?
+
+1) **Medal Tally Analysis**
 
     -> year-wise
 
@@ -16,13 +20,15 @@ What it includes?
 
     -> includes useful maps
 
-3) **Country-wise analysis**
+3) **Country-wise Analysis**
 
     -> mainly includes charts and useful insights
 
-First we will need to collect data about the movies for this use **120 years of Olympic history: athletes and results** [Visit Dataset](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results "Download or get more information about the dataset"). The flow of project is mainly divided into four parts: **data collection, data preprocessing, and creating website**.
+First we will need to collect data about the movies for this use **120 years of Olympic history: athletes and results** [Visit Dataset](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results "Download or get more information about the dataset"). The project development workflow is structured into three main phases: data collection, data preprocessing, and web application creation. **data collection, data preprocessing, and creating website**.
+
 
 ## Installations
+
 1. Clone the repo:
    ```sh
    git clone https://github.com/jainamb12/olympic-data-analysis.git
@@ -37,21 +43,34 @@ First we will need to collect data about the movies for this use **120 years of 
    ``` 
    **NOTE** : In case the above command doesn't work, try running the file by giving absolute file path in your terminal:
 
+
 ## Logic
-\* Filter the data by removing winter rows
 
-\* Merge two datasets: athelete_events.csv and noc_regions.csv on basis of NOC. This will give us the complete information about the atheletes.
+The analytical engine processes the Olympic data through these key steps:
 
-\* Preprocess the data or clean the dataset, then do **OHE** on medal column after that do **group by** on NOC basis sum the total medals **sort by gold**. But output is very different from expected when compare to real values from sources this is because data is *according to athelete not according to team* means india won gold in hocky in 1928 then total 11 gold medals will be consider for that particular year not 1 time
-to solve this drop rows which has same values for **Team , NOC , Games , Year , City , Sport , Event , Medal** then group by again 
+1. **Initial Data Filtering**:
+The dataset is initially filtered to include only **Summer Olympics** records, removing all "Winter" season entries.
 
-\* cover 4 different cases of filtering dataset by country and year, write same method in helper file .
+2. **Data Merging**:
+The athlete_events.csv and noc_regions.csv datasets are merged using the NOC (National Olympic Committee) column to consolidate athlete and region information.
 
-**Note** : In above analysis results may slightly vary because of historical and geographical circumstances for that country e.g. russia, germany etc.
+3. **Data Preprocessing and Medal Aggregation**:
+The dataset undergoes thorough cleaning and preprocessing.
+One-Hot Encoding (OHE) is applied to the Medal column to create binary indicators for Gold, Silver, and Bronze.
+A direct group by NOC and summing of medals would incorrectly count multiple medals for team events (e.g., 11 gold medals for a hockey team win). To correct this, duplicate rows based on a combination of Team, NOC, Games, Year, City, Sport, Event, and Medal are dropped before aggregation. This ensures each unique medal won by a team/athlete for an event is counted only once.
+After correction, medals are then grouped and aggregated.
 
-\* In overall analysis part first there is top statistics about olympics which is obtained by getting unique records from a particulat column and count it. after that there are plots and maps.
+4. **Flexible Data Filtering**:
+A dedicated helper function is implemented to manage four different cases of filtering the dataset by country and year, ensuring dynamic and precise analysis.
 
-\* Finally for country wise analysis there is plot for it's medal tally and a map showing that country excels in which sports
+Note: Due to historical and geographical changes (e.g., in countries like Russia, Germany), results in some analyses might show slight variations compared to current official records.
+
+5. **Overall Analysis Implementation**:
+This section begins by presenting top-level statistics, derived from unique counts within specific columns, followed by the generation of various plots and geographical maps for comprehensive insights.
+
+6. **Country-wise Analysis Implementation**:
+For individual country analysis, a dedicated plot visualizes its medal tally over time, and a map highlights the sports in which that country excels.
+
 
 ## Features
 1. User Input selection for preferences
@@ -59,6 +78,7 @@ to solve this drop rows which has same values for **Team , NOC , Games , Year , 
 3. charts and maps for better visualisation
 4. manages data properly for each analysis
 5. Deployed on **streamlit cloud** for easy access
+
 
 ## Contributing
 Contributions are welcome! Follow these steps:
